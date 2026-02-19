@@ -92,10 +92,73 @@ Repo is ready to share with the LT Labs team.
   - Standardize location names  
   - Convert bedrooms/bathrooms to integers  
   - Parse & standardize size (to m²)  
-  - Remove remaining phone numbers  
   - Handle missing values & outliers  
 - Basic EDA visuals (price distribution, price by location, etc.)  
 - Save clean CSV for modeling
 
 Day 1 complete — solid raw dataset with strong price coverage and usable locations after quick fix.  
 Ready for cleaning & feature engineering.
+
+---
+
+**Day 2 – Data Cleaning & Feature Engineering**  
+**Date**: February 19, 2026
+
+## Objective (Day 2)
+
+Make the data model-ready:  
+- Remove duplicates  
+- Handle missing values  
+- Standardize location names  
+- Convert size units  
+- Remove extreme outliers  
+
+Create new features:  
+- price_per_sqft  
+- month (from listing date) 
+
+Save as `clean_listings.csv`  
+Add basic EDA visuals
+
+## What Was Achieved
+
+- Loaded and processed the raw 407-row dataset  
+- Removed **exact duplicate rows** (very few or none removed – safe approach)  
+- Handled missing values:  
+  - Filled missing Bedrooms/Bathrooms with median  
+  - Dropped rows missing Price (2 rows)  
+  - Filled missing Size with median after parsing  
+- Standardized location names:  
+  - Removed quotes, stripped spaces, title case  
+  - Removed redundant ", Nairobi" and ", Westlands"  
+  - Consolidated common variations (Runda, Lower Kabete, Westlands, etc.)  
+  → Now ~33 unique locations (from ~50+ before)  
+- Parsed Size to numeric `Size_m2` (converted ft²/acres to m²)  
+- Removed extreme outliers (top 1% prices, sizes, bedrooms >10, etc.)  
+- Created new features:  
+  - `price_per_sqft` (Price / Size_m2, filled with median if needed)  
+  - `month` = 2 (constant, since Listing Date empty)  
+- Saved final clean dataset:  
+  `data/processed/clean_listings.csv`  
+- Added basic EDA visuals (saved as PNGs):  
+  - Price distribution histogram  
+  - Price by Bedrooms boxplot  
+  - Median price by top 10 locations barplot  
+  → Saved in `presentation/` folder
+
+## GitHub Deliverables (Day 2)
+
+- Updated notebook: `notebooks/02_day2_cleaning_eda.ipynb`  
+  - Full cleaning pipeline  
+  - Feature engineering  
+  - EDA visuals code  
+- Clean CSV: `data/processed/clean_listings.csv`  
+- EDA plots: `presentation/eda_*.png`  
+- README.md updated with Day 2 summary  
+
+## Challenges Faced & How They Were Solved
+
+- Duplicate removal too aggressive (dropped valid rows) → switched to safe exact-row duplicate check only  
+- Size parsing failed (0 values extracted) → improved regex to handle comma decimals and units  
+- Missing `presentation/` folder → created with `os.makedirs()` before saving plots  
+- Processed folder not created → added folder creation at notebook start  
