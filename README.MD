@@ -1,7 +1,7 @@
 # Nairobi House Price Prediction – LT Labs Fellowship Sprint
 
 **Day 1 – Data Collection & Structuring**  
-**Date**: February 18, 2026
+**Date**: **February 18, 2026**
 
 ## Objective (Day 1)
 
