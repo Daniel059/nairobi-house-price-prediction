@@ -1,0 +1,49 @@
+# Python / Jupyter temporary files
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+*checkpoint*.ipynb
+
+# Virtual environments / conda
+venv/
+env/
+.venv/
+*.env
+conda-meta/
+pip-log.txt
+
+# Large generated data & models (protect repo size)
+data/processed/               # ← your cleaned CSVs, feature files
+*.pkl                         # future model files
+*.joblib
+*.h5
+*.pickle
+
+# Plots / exports (can be regenerated)
+presentation/*.png
+presentation/*.jpg
+presentation/*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional: ignore ALL CSVs if you prefer (but keep raw if you want reviewers to see it)
+# *.csv
+# data/**/*.csv
+# → for now, leave raw CSV tracked (it's small and shows Day 1 work)
