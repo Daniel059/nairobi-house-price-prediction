@@ -1,7 +1,7 @@
 # Nairobi House Price Prediction – LT Labs Fellowship Sprint
 
 **Day 1 – Data Collection & Structuring**  
-**Date**: **February 18, 2026**
+**Date**: February 18, 2026
 
 ## Objective (Day 1)
 
@@ -115,7 +115,7 @@ Make the data model-ready:
 
 Create new features:  
 - price_per_sqft  
-- month (from listing date) 
+- month (from listing date)  
 
 Save as `clean_listings.csv`  
 Add basic EDA visuals
@@ -162,3 +162,71 @@ Add basic EDA visuals
 - Size parsing failed (0 values extracted) → improved regex to handle comma decimals and units  
 - Missing `presentation/` folder → created with `os.makedirs()` before saving plots  
 - Processed folder not created → added folder creation at notebook start  
+
+Day 2 complete — clean, feature-engineered dataset ready for modeling + basic visuals added.  
+Ready for EDA and baseline model.
+
+---
+
+**Day 3 – Exploratory Analysis & Baseline Model**  
+**Date**: February 21, 2026
+
+## Objective (Day 3)
+
+Understand price behavior and build first model:  
+- Answer clearly:  
+  1. Which locations are most expensive?  
+  2. How strongly does size affect price?  
+  3. Which amenities increase value?  
+- Train/test split  
+- Linear Regression baseline  
+- Evaluate using MAE, RMSE, R²  
+- Interpret MAE in KES
+
+## What Was Achieved
+
+- Loaded clean dataset (397 rows after cleaning)  
+- Answered the 3 required questions:  
+
+  **1. Most expensive locations (median price):**  
+  - Muthaiga: 240,000,000 KES  
+  - Thigiri, Westlands: 200,000,000 KES  
+  - Gigiri, Westlands: 167,500,000 KES  
+  - Karen: 135,000,000 KES  
+  - Runda: 130,000,000 KES  
+  - ... (top 10 shown in notebook & plot)
+
+  **2. Size vs Price relationship:**  
+  - Correlation: -0.038 (very weak/near zero)  
+  - Interpretation: Size has almost no linear relationship with price in this data — possibly due to outliers, location dominance, or missing quality factors.
+
+  **3. Amenities impact (proxy via Property Type):**  
+  - Median price: house (115M), villa (100M), townhouse (80M)  
+  - Houses tend to have highest median price (limited proxy since no real amenities data)
+
+- Built baseline Linear Regression model  
+- Train/test split (80/20)  
+- Model trained successfully  
+- Performance:  
+  - MAE: 43,462,253 KES → On average, predictions are off by ~43.5 million KES.  
+  - RMSE: 56,963,956 KES → Larger errors are present (model struggles on some houses).  
+  - R²: 0.307 → Model explains only ~30.7% of price variation (low but expected for simple baseline).
+
+## GitHub Deliverables (Day 3)
+
+- New notebook: `notebooks/03_day3_eda_baseline_model.ipynb`  
+  - EDA answers with visuals  
+  - Train/test split  
+  - Linear Regression pipeline  
+  - Performance metrics & interpretation  
+- Updated README with Day 3 summary  
+
+## Challenges Faced & How They Were Solved
+
+- scikit-learn not installed → installed via `!pip install scikit-learn`  
+- Sparse matrix error in pipeline → fixed by setting `sparse_output=False` in OneHotEncoder  
+- Weak correlation & low R² → normal for baseline; expect improvement with better models (Day 4)
+
+
+Day 3 complete — baseline model built, EDA questions answered, performance documented.  
+Ready for model improvement & explainability.
